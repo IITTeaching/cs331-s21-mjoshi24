@@ -92,9 +92,27 @@ def test3():
 # EXERCISE 4
 #################################################################################
 
+def gen_pattern_helper(first, second):
+    first = "".join(reversed(first))[:second]
+    reverse = first + "".join(reversed(first))[1:]
+    return reverse
+
 # implement this function
 def gen_pattern(chars):
-    pass
+    dlength = len(chars)*2 - 1 # the length of the diamond shape
+    length = len(chars) # length of the string
+
+    stri = len('.'.join(gen_pattern_helper(chars,length))) # length of the full string
+
+    for i in range(1, int(dlength/2+1)):
+        reverse = gen_pattern_helper(chars, i) # helper method reversed the added string
+        cen = '.'.join(reverse).center(stri,'.') # joins with .
+        print(cen)
+
+    for i in range(int(dlength/2+1),0, -1):
+        reverse = gen_pattern_helper(chars, i)
+        cen = ".".join(reverse).center(stri,".") # joins with .
+        print(cen)
 
 def test4():
     tc = unittest.TestCase()
