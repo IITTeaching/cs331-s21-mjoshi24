@@ -38,7 +38,7 @@ def compute_ngrams(toks, n=2):
 
 def test1():
     test1_1()
-    test1_2()
+   # test1_2()
 
 # 20 Points
 def test1_1():
