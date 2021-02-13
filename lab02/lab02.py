@@ -100,7 +100,17 @@ def test1_2():
 ################################################################################
 # Implement this function
 def gen_passage(ngram_dict, length=100):
-    pass
+  ch = random.choice(sorted(ngram_dict.keys())) #random choice from ngram dict
+  lis = [ch]
+  while len(lis) < length:
+    if ch not in ngram_dict:
+      ch = random.choice(sorted(ngram_dict.keys()))
+      lis.append(ch)
+    ch2 = random.choice(ngram_dict[ch]) #second random choice
+    length2 = len(ch2)
+    ch = ch2[length2 - 1]
+    lis.extend(list(ch2))
+  return " ".join(lis[:length]) #similar to last lab
 
 # 50 Points
 def test2():
