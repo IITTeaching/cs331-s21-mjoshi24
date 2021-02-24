@@ -27,7 +27,7 @@ def mysort(lst: List[T], compare: Callable[[T, T], int]) -> List[T]:
                 num -= 1 #go down one
     return lst
     pass
-    pass
+    
 
 def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
     """
@@ -37,6 +37,17 @@ def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
     position of the first (leftmost) match for elem in lst. If elem does not
     exist in lst, then return -1.
     """
+    min = 0
+    max = len(lst) - 1
+    while(min <= max):
+        middle = min + (max - min) // 2
+        if(compare(lst[middle],elem) == 0):
+            return middle
+        elif(compare(lst[middle], elem) == -1):
+            left = middle + 1
+        else:
+            right = middle - 1
+    return -1
     pass
 
 class Student():
