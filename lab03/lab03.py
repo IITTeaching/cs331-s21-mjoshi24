@@ -41,7 +41,7 @@ def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
     max = len(lst) - 1
     while(min <= max):
         middle = min + (max - min) // 2
-        if(compare(lst[middle],elem) == 0):
+        if(compare(lst[middle], elem) == 0):
             return middle
         elif(compare(lst[middle], elem) == -1):
             left = middle + 1
