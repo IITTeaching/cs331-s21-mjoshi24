@@ -135,6 +135,13 @@ class PrefixSearcher():
         """
         self.document = document
         self.k = k
+        pre=[]
+        for x in range(len(document) - k+1):
+            pre.append(self.document[x:x+k])
+        for y in range((len(document) - k+1), len(document)):
+            pre.append(self.document[y:])
+        print(pre)
+        self.list=mysort(pre,lambda x,y:  0 if x == y else (-1 if x < y else 1))
         pass
 
     def search(self, q):
