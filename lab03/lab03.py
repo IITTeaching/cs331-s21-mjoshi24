@@ -135,13 +135,13 @@ class PrefixSearcher():
         """
         self.document = document
         self.k = k
-        pre=[]
-        for x in range(len(document) - k+1):
-            pre.append(self.document[x:x+k])
-        for y in range((len(document) - k+1), len(document)):
-            pre.append(self.document[y:])
+        pre = []
+        for i in range(len(document) - k+1):
+            pre.append(self.document[i : i+k])
+        for j in range((len(document) - k+1), len(document)):
+            pre.append(self.document[j:])
         print(pre)
-        self.list=mysort(pre,lambda x,y:  0 if x == y else (-1 if x < y else 1))
+        self.list = mysort(pre,lambda i, j:  0 if i == j else (-1 if i < j else 1))
         pass
 
     def search(self, q):
@@ -154,7 +154,6 @@ class PrefixSearcher():
         if len(q) > self.k:
             raise Exception()
         return mybinsearch(self.list, q, lambda x,y: 0 if x[:min(len(x),len(y))] == y else (-1 if x[:min(len(x),len(y))] < y else 1)) != -1
-        pass
         pass
 
 # 30 Points
@@ -197,6 +196,14 @@ class SuffixArray():
         """
         Creates a suffix array for document (a string).
         """
+        self.document = document # use in positions
+        lst = []
+
+        for i in range(len(self.document)):
+            lst.append(self.document[i:]) #add to list
+
+        c = lambda x,y: 0 if self.document[x:] == self.document[y:] else (-1 if self.document[x:] < self.document[y:] else 1)
+        mysort(self.list, c)
         pass
 
 
@@ -204,12 +211,19 @@ class SuffixArray():
         """
         Returns all the positions of searchstr in the documented indexed by the suffix array.
         """
+        positions = []
+        for i in range(len(self.document) - len(searchstr)): # accessible length
+            if self.document[i : i + len(searchstr)] == searchstr: 
+                positions.append(i) #add the position to the positions array
+        return positions 
         pass
 
     def contains(self, searchstr: str):
         """
         Returns true of searchstr is coontained in document.
         """
+        if len(positions(self, searchstr)) != 0: #uses the same code in positions, so i simplified it to use the previous method
+            return True
         pass
 
 # 40 Points
