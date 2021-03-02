@@ -17,7 +17,7 @@ def mysort(lst: List[T], compare: Callable[[T, T], int]) -> List[T]:
     right element, 1 if the left is larger than the right, and 0 if the two
     elements are equal.
     """
-   for i in range(1, len(lst)):
+    for i in range(1, len(lst)):
         num = i #index
         for j in range(i - 1, -1, -1):
             if compare(lst[num], lst[j]) == -1: #checks to see if the left is smaller than the right
@@ -27,7 +27,7 @@ def mysort(lst: List[T], compare: Callable[[T, T], int]) -> List[T]:
                 num -= 1 #go down one
     return lst
     pass
-    
+
 
 def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
     """
@@ -213,9 +213,9 @@ class SuffixArray():
         """
         positions = []
         for i in range(len(self.document) - len(searchstr)): # accessible length
-            if self.document[i : i + len(searchstr)] == searchstr: 
+            if self.document[i : i + len(searchstr)] == searchstr:
                 positions.append(i) #add the position to the positions array
-        return positions 
+        return positions
         pass
 
     def contains(self, searchstr: str):
