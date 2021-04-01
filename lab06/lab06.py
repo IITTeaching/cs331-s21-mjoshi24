@@ -50,17 +50,19 @@ def check_delimiters(expr):
     delim_openers = '{([<'
     delim_closers = '})]>'
     delimiters = ""
-    for i in expr:
-      if i in delim_openers or i in delim_closers:
-        delimiters += i
     s = Stack()
-    for char in delimiters:
-      if char in delim_openers:
-        s.push(char)
-      if char in delim_closers:
+    for i in expr:
+      if i in delim_closers or i in delim_openers:
+        delimiters += i
+    for k in delimiters:
+      if k in delim_openers:
+        s.push(k)
+      if k in delim_closers:
         if s.empty():
           return False
-        if delim_openers.index(s.peek()) == delim_closers.index(char):
+	j = delim_openers.index(s.peek())
+	idx = delim_closers.index(k)
+        if j == idx:  # check if they are in the same index of the openers and closers
           s.pop()
         else:
           return False
